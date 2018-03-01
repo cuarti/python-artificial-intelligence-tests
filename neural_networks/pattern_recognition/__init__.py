@@ -1,6 +1,5 @@
 
-from numpy import random
-from numpy.ma import dot, exp, array
+from numpy import random, dot, exp, array
 
 
 class NeuralNetwork:
@@ -10,7 +9,6 @@ class NeuralNetwork:
         self.weights = 2 * random.random((3, 1)) - 1
 
     def train(self, inputs, outputs, num):
-
         for iteration in range(num):
             output = self.think(inputs)
             error = outputs - output
@@ -24,9 +22,14 @@ class NeuralNetwork:
         return 1 / (1 + exp(-x))
 
 
-network = NeuralNetwork()
-inputs = array([[1, 1, 1], [1, 0, 1], [0, 1, 1]])
-outputs = array([[1, 1, 0]]).T
-network.train(inputs, outputs, 10000)
+def main():
+    network = NeuralNetwork()
+    inputs = array([[1, 1, 1], [1, 0, 1], [0, 1, 1]])
+    outputs = array([[1, 1, 0]]).T
+    network.train(inputs, outputs, 10000)
 
-print(network.think(array([1, 0, 0])))
+    print(network.think(array([1, 0, 0])))
+
+
+if __name__ == '__main__':
+    main()
